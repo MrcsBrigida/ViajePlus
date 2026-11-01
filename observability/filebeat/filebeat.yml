@@ -1,0 +1,33 @@
+
+filebeat.inputs:
+  - type: filestream
+    id: viajeplus-container-logs
+    enabled: true
+    paths:
+      - /var/lib/docker/containers/*/*.log
+    parsers:
+      - container: ~
+
+processors:
+  - add_docker_metadata:
+      host: "unix:///var/run/docker.sock"
+
+  - decode_json_fields:
+      fields: ["message"]
+      target: ""
+      overwrite_keys: true
+      add_error_key: true
+
+  - drop_event:
+      when:
+        not:
+          equals:
+            container.name: "viajeplus-container"
+
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+
+setup.kibana:
+  host: "http://kibana:5601"
+
+setup.ilm.enabled: false

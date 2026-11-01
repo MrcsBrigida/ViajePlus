@@ -1,0 +1,7 @@
+
+apiVersion: v2
+name: viajeplus
+description: Helm Chart para implantação da aplicação Viaje+
+type: application
+version: 0.1.0
+appVersion: "1.0"
