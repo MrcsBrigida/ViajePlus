@@ -1,0 +1,90 @@
+
+{% extends "base.html" %}
+
+{% block title %}Viaje+ | Explore o mundo{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+        <span class="hero-tag">DESCUBRA O EXTRAORDINÁRIO</span>
+
+        <h1>O mundo é grande.<br>
+            Sua próxima história também.</h1>
+
+        <p>
+            Encontre destinos incríveis, planeje sua próxima aventura
+            e transforme seus sonhos em experiências inesquecíveis.
+        </p>
+
+        <a href="#destinos" class="primary-button">
+            Descobrir destinos →
+        </a>
+    </div>
+
+    <div class="hero-bottom">
+        <span>Explore. Descubra. Viva.</span>
+        <span>01 — 03</span>
+    </div>
+</section>
+
+
+<section class="destinations-section" id="destinos">
+
+    <div class="section-heading">
+        <div>
+            <span class="section-tag">INSPIRAÇÃO PARA VIAJAR</span>
+            <h2>Destinos em destaque</h2>
+            <p>Selecionamos lugares que merecem fazer parte da sua história.</p>
+        </div>
+
+        <a href="#destinos" class="text-link">Ver todos os destinos →</a>
+    </div>
+
+    <div class="destination-grid">
+
+        {% for destino in destinos %}
+        <article class="destination-card">
+
+            <div class="destination-image"
+                 style="background-image: url('{{ destino.imagem }}')">
+
+                <span class="destination-category">
+                    {{ destino.categoria }}
+                </span>
+            </div>
+
+            <div class="destination-info">
+                <span class="destination-country">{{ destino.pais }}</span>
+
+                <h3>{{ destino.nome }}</h3>
+
+                <p>{{ destino.descricao }}</p>
+
+                <a href="#destinos" class="card-link">
+                    Conhecer destino →
+                </a>
+            </div>
+
+        </article>
+        {% endfor %}
+
+    </div>
+</section>
+
+
+<section class="experience-section">
+    <div>
+        <span class="section-tag">SUA PRÓXIMA AVENTURA</span>
+        <h2>Viajar é descobrir<br>novas possibilidades.</h2>
+    </div>
+
+    <p>
+        Seja uma viagem internacional, uma escapada de fim de semana
+        ou uma aventura pelo Brasil, existe um destino esperando por você.
+    </p>
+</section>
+
+{% endblock %}

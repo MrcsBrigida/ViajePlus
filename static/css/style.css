@@ -1,0 +1,372 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+:root {
+    --navy: #101f35;
+    --navy-light: #1b304b;
+    --gold: #c6a46a;
+    --white: #ffffff;
+    --gray: #687386;
+    --background: #f7f6f2;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--navy);
+    background: var(--background);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Cabeçalho */
+
+.header {
+    height: 84px;
+    padding: 0 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--white);
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--navy);
+}
+
+.logo span {
+    color: var(--gold);
+}
+
+.navigation {
+    display: flex;
+    gap: 38px;
+}
+
+.navigation a {
+    font-size: 14px;
+    color: var(--navy);
+    transition: color 0.3s;
+}
+
+.navigation a:hover {
+    color: var(--gold);
+}
+
+.header-button {
+    background: var(--navy);
+    color: var(--white);
+    padding: 13px 22px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+/* Banner principal */
+
+.hero {
+    min-height: 620px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 80px 10%;
+    color: var(--white);
+    background-image: url("https://images.unsplash.com/photo-1470770841072-f978cf4d019e");
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(9, 22, 39, 0.88),
+        rgba(9, 22, 39, 0.48),
+        rgba(9, 22, 39, 0.12)
+    );
+}
+
+.hero-content {
+    position: relative;
+    max-width: 650px;
+    z-index: 1;
+}
+
+.hero-tag,
+.section-tag {
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 5vw, 66px);
+    line-height: 1.15;
+    margin: 25px 0;
+}
+
+.hero-content p {
+    max-width: 520px;
+    line-height: 1.8;
+    color: #e0e4eb;
+    font-size: 15px;
+    margin-bottom: 35px;
+}
+
+.primary-button {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    padding: 16px 25px;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.primary-button:hover {
+    background: var(--white);
+    transform: translateY(-3px);
+}
+
+.hero-bottom {
+    position: absolute;
+    z-index: 1;
+    bottom: 28px;
+    left: 10%;
+    right: 10%;
+    display: flex;
+    justify-content: space-between;
+    color: #e0e4eb;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+/* Destinos */
+
+.destinations-section {
+    padding: 100px 8%;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 30px;
+    margin-bottom: 45px;
+}
+
+.section-heading h2,
+.experience-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    margin: 15px 0;
+}
+
+.section-heading p {
+    color: var(--gray);
+    font-size: 14px;
+}
+
+.text-link,
+.card-link {
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.destination-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.destination-card {
+    background: var(--white);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.destination-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(16, 31, 53, 0.10);
+}
+
+.destination-image {
+    height: 260px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.destination-category {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    padding: 8px 12px;
+    background: var(--white);
+    color: var(--navy);
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.destination-info {
+    padding: 25px;
+}
+
+.destination-country {
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.destination-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 25px;
+    margin: 8px 0;
+}
+
+.destination-info p {
+    color: var(--gray);
+    font-size: 13px;
+    line-height: 1.7;
+    min-height: 44px;
+    margin-bottom: 20px;
+}
+
+/* Seção final */
+
+.experience-section {
+    background: var(--navy);
+    color: var(--white);
+    padding: 75px 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+}
+
+.experience-section h2 {
+    font-size: 38px;
+}
+
+.experience-section p {
+    max-width: 420px;
+    color: #c7cfda;
+    line-height: 1.9;
+    font-size: 14px;
+}
+
+/* Rodapé */
+
+.footer {
+    padding: 45px 8%;
+    text-align: center;
+    background: #0b1728;
+    color: var(--white);
+}
+
+.footer .logo {
+    color: var(--white);
+}
+
+.footer p {
+    color: #b7c0cc;
+    margin: 12px 0 20px;
+    font-size: 13px;
+}
+
+.footer small {
+    color: #8591a1;
+    font-size: 11px;
+}
+
+/* Responsividade */
+
+@media (max-width: 850px) {
+    .header {
+        padding: 0 5%;
+    }
+
+    .navigation {
+        gap: 15px;
+    }
+
+    .header-button {
+        display: none;
+    }
+
+    .destination-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .experience-section {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 600px) {
+    .header {
+        height: auto;
+        padding: 20px 5%;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .navigation {
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero {
+        min-height: 570px;
+        padding: 60px 7%;
+    }
+
+    .hero-bottom {
+        left: 7%;
+        right: 7%;
+    }
+
+    .destinations-section {
+        padding: 65px 6%;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .section-heading h2 {
+        font-size: 34px;
+    }
+
+    .destination-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .experience-section {
+        padding: 60px 7%;
+    }
+}

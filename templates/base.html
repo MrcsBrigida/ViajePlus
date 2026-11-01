@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Viaje+ | Explore o mundo{% endblock %}</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <header class="header">
+        <a href="/" class="logo">Viaje<span>+</span></a>
+
+        <nav class="navigation">
+            <a href="/">Início</a>
+            <a href="#destinos">Destinos</a>
+            <a href="#sobre">Sobre nós</a>
+        </nav>
+
+        <a href="#destinos" class="header-button">Explorar viagens</a>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer" id="sobre">
+        <a href="/" class="logo">Viaje<span>+</span></a>
+        <p>Descubra novos lugares. Viva novas histórias.</p>
+        <small>© 2026 Viaje+. Todos os direitos reservados.</small>
+    </footer>
+
+</body>
+</html>
