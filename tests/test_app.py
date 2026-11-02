@@ -74,7 +74,7 @@ def test_http_request_logging(caplog):
     log_data = json.loads(request_logs[0].getMessage()) \
         if False else request_logs[0].http_data
 
-    assert log_data["event"] == "http_request"
+    assert log_data["event_type"] == "http_request"
     assert log_data["method"] == "GET"
     assert log_data["path"] == "/health"
     assert log_data["status"] == 200
