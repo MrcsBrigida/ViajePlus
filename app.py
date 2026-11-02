@@ -1,28 +1,66 @@
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request, g
 import logging
 import json
-from datetime import datetime
+import time
+from datetime import datetime, timezone
 
 app = Flask(__name__)
 
-# Configuração inicial de logs
+# Configuração de logs estruturados em JSON
 class JsonFormatter(logging.Formatter):
     def format(self, record):
         log_data = {
-            "timestamp": datetime.now().isoformat(),
+            "timestamp": datetime.now(timezone.utc).isoformat(),
             "level": record.levelname,
             "message": record.getMessage()
         }
+
+        # Campos adicionais das requisições HTTP
+        if hasattr(record, "http_data"):
+            log_data.update(record.http_data)
+
         return json.dumps(log_data, ensure_ascii=False)
 
 
 logger = logging.getLogger("viajeplus")
 logger.setLevel(logging.INFO)
 
-handler = logging.StreamHandler()
-handler.setFormatter(JsonFormatter())
-logger.addHandler(handler)
+if not logger.handlers:
+    handler = logging.StreamHandler()
+    handler.setFormatter(JsonFormatter())
+    logger.addHandler(handler)
+
+logger.propagate = False
+
+
+# Captura o início de cada requisição
+@app.before_request
+def start_request_timer():
+    g.start_time = time.perf_counter()
+
+
+# Registra os dados ao finalizar cada requisição
+@app.after_request
+def log_http_request(response):
+    duration_ms = round(
+        (time.perf_counter() - g.start_time) * 1000, 2
+    )
+
+    logger.info(
+        "Requisição HTTP processada",
+        extra={
+            "http_data": {
+                "event_type": "http_request",
+                "method": request.method,
+                "path": request.path,
+                "status": response.status_code,
+                "duration_ms": duration_ms
+            }
+        }
+    )
+
+    return response
 
 
 # Dados demonstrativos dos destinos

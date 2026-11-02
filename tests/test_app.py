@@ -50,3 +50,34 @@ def test_destinations_rendered():
     assert b"Paris" in response.data
     assert b"Rio de Janeiro" in response.data
     assert b"Santorini" in response.data
+
+
+def test_http_request_logging(caplog):
+    """Verifica se as requisições HTTP são registradas corretamente."""
+    import json
+    import logging
+
+    with caplog.at_level(logging.INFO, logger="viajeplus"):
+        client = app.test_client()
+        response = client.get("/health")
+
+    assert response.status_code == 200
+
+    request_logs = [
+        record for record in caplog.records
+        if record.name == "viajeplus"
+        and record.getMessage() == "Requisição HTTP processada"
+    ]
+
+    assert len(request_logs) == 1
+
+    log_data = json.loads(request_logs[0].getMessage()) \
+        if False else request_logs[0].http_data
+
+    assert log_data["event"] == "http_request"
+    assert log_data["method"] == "GET"
+    assert log_data["path"] == "/health"
+    assert log_data["status"] == 200
+    assert isinstance(log_data["duration_ms"], (int, float))
+    assert log_data["duration_ms"] >= 0
+
